@@ -1,0 +1,149 @@
+Task 1: Get the book list available in the shop
+javascript
+Copy
+Edit
+fetch("http://localhost:3000/books")
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error fetching books:", error));
+Task 2: Get the books based on ISBN
+javascript
+Copy
+Edit
+const isbn = "978-3-16-148410-0"; // Replace with actual ISBN
+fetch(`http://localhost:3000/books/${isbn}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error fetching book details:", error));
+Task 3: Get all books by the author
+javascript
+Copy
+Edit
+const author = "J.K. Rowling"; // Replace with actual author name
+fetch(`http://localhost:3000/books/author/${encodeURIComponent(author)}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error fetching books by author:", error));
+Task 4: Get all books based on title
+javascript
+Copy
+Edit
+const title = "Harry Potter"; // Replace with actual book title
+fetch(`http://localhost:3000/books/title/${encodeURIComponent(title)}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error fetching books by title:", error));
+Task 5: Get a book review
+javascript
+Copy
+Edit
+const isbnReview = "978-3-16-148410-0"; // Replace with actual ISBN
+fetch(`http://localhost:3000/books/review/${isbnReview}`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error fetching book review:", error));
+Task 6: Register a new user
+javascript
+Copy
+Edit
+fetch("http://localhost:3000/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username: "newuser",
+    password: "password123"
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error registering user:", error));
+Task 7: Login as a registered user
+javascript
+Copy
+Edit
+fetch("http://localhost:3000/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username: "newuser",
+    password: "password123"
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error logging in:", error));
+Task 8: Add/Modify a book review
+javascript
+Copy
+Edit
+const reviewISBN = "978-3-16-148410-0";
+fetch(`http://localhost:3000/books/review/${reviewISBN}`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    review: "An amazing book! Must read."
+  })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error adding review:", error));
+Task 9: Delete the book review
+javascript
+Copy
+Edit
+fetch(`http://localhost:3000/books/review/${reviewISBN}`, {
+  method: "DELETE"
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error deleting review:", error));
+Task 10: Get all books using an async callback function
+javascript
+Copy
+Edit
+async function getBooks() {
+  try {
+    let response = await fetch("http://localhost:3000/books");
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching books:", error);
+  }
+}
+getBooks();
+Task 11: Search by ISBN – Using Promises
+javascript
+Copy
+Edit
+function getBookByISBN(isbn) {
+  return fetch(`http://localhost:3000/books/${isbn}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error fetching book:", error));
+}
+
+getBookByISBN("978-3-16-148410-0");
+Task 12: Search by Author
+javascript
+Copy
+Edit
+function getBooksByAuthor(author) {
+  return fetch(`http://localhost:3000/books/author/${encodeURIComponent(author)}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error fetching books:", error));
+}
+
+getBooksByAuthor("J.K. Rowling");
+Task 13: Search by Title
+javascript
+Copy
+Edit
+function getBooksByTitle(title) {
+  return fetch(`http://localhost:3000/books/title/${encodeURIComponent(title)}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error fetching books:", error));
+}
+
+getBooksByTitle("Harry Potter");
